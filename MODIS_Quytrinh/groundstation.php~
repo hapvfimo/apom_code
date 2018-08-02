@@ -1,0 +1,97 @@
+<-- author: apom-->
+
+<?php
+# duoc goi tu file khac va truyen vao 3 tham so
+# doc  file text voi 3 thm so , loai anh, path Mod,myd 04-07
+require "modishandle.php";
+ini_set("display_errors", true);
+error_reporting(E_ALL);
+
+$modisHandle = new ModisHandle();// khoi tao tu class modishandle
+
+//http://10.10.133.68:8080/MODIS/download/groundstation.php?fileType=MOD&filePath04=/apom_data/test/EOS/SatOrgMOD04/2015/MOD04L2.A2015133.0343.006.2015133035143/MOD04L2.A2015133.0343.006.2015133035143.hdf&filePath07=/apom_data/test/EOS/SatOrgMOD07/2015/MOD07L2.A2015133.0343.006.2015133035143/MOD07L2.A2015133.0343.006.2015133035143.hdf
+#$argv[0] Tên file php
+$fileType = $argv[1]; //lay tham so thu nhat tu cac tham so truyen vao
+
+//$fileType = 'MOD';
+//$fileType = 'MYD';
+
+$tableName = array(); // depend on imageType to chose folder to insert
+$imageType = array(); // image type is mod04_l2, mod07_l2 or myd04_l2 and myd07_l2
+$collection = '6'; // DEFAULT Collection MODIS now is 6;
+
+#kiem tra là mod hay myd thi
+if($fileType == 'mod')
+{
+   $tableName = array( "org.satorgmod04", "org.satorgmod07" );
+   $imageType = array( 'MOD04_L2', 'MOD07_L2');
+}
+else if($fileType == 'myd')
+{
+   $tableName = array( "org.satorgmyd04", "org.satorgmyd07" );
+   $imageType = array( 'MYD04_L2', 'MYD07_L2');
+}
+
+
+$filePath04 = $argv[2];
+$filePath07 = $argv[3];
+$sourceid = $argv[4]; // SourceID = 1 (UET), SourceID = 0 (NASA)
+
+print $sourceid;
+exit();
+
+
+ // has value fileType, filePath04, filePath 07
+
+$fileResample = array();
+// ---------------------- -------------- ----------------
+// HANDLE FILE PATH 04
+$filePath = $filePath04;
+$folderPath = dirname($filePath04) . "/";
+// filePath is path to file success download
+// folderPatth is path to folder file
+// imageType is MOD04, MYD04....
+// hdf: default extension
+$fileName            = basename($filePath);
+$fileNameNoExtension = basename($fileName, ".hdf"); // get satType from fileName
+
+$temp = array($fileNameNoExtension, $filePath, $folderPath, $imageType[0], 'hdf', $tableName[0], $collection, $sourceid);
+#goi toi ham index trong modisHandle de resample cua anh sol khi 
+
+$fileResample[0] = $modisHandle->index($fileNameNoExtension, $filePath, $folderPath, $imageType[0], ".hdf", $tableName[0], $collection, $sourceid);
+
+// ---------------------- -------------- ----------------
+
+// HANDLE FILE PATH 07
+$filePath = $filePath07;
+$folderPath = dirname($filePath07) . "/";
+// filePath is path to file success download
+// folderPatth is path to folder file
+// imageType is MOD04, MYD04....
+// hdf: default extension
+$fileName            = basename($filePath);
+$fileNameNoExtension = basename($fileName, ".hdf"); // get satType from fileName
+
+$temp = array($fileNameNoExtension, $filePath, $folderPath, $imageType[1], 'hdf', $tableName[1], $collection, $sourceid);
+
+//print_r($temp);
+//echo "</pre>";
+#goi toi ham index trong modisHandle de resample cua anh khi tuong
+$fileResample[1] = $modisHandle->index($fileNameNoExtension, $filePath, $folderPath, $imageType[1], ".hdf", $tableName[1], $collection, $sourceid);// luu duong dan toi file resample
+
+
+$type = strtolower($fileType); // get the file type: mod or myd
+
+// Loi~ o day chay R khong goi duoc Python, vi vay ghi duong dan file .TIF vao file text
+
+$file = '/var/www/html/MODIS_Quytrinh/output_resample.txt';// thu hien bangc ach goi toi duogn dan chua file resmple
+$string = $type . " "  . $fileResample[0] . " " . $fileResample[1] . " " . $sourceid;
+file_put_contents($file, $string);  // Write the file type, file TIFF sol khi, khi tuong, sourceid = 1
+echo "Rscript /var/www/html/MODIS_Quytrinh/AodToPm.R " . $type . " "  . $fileResample[0] . " " . $fileResample[1] . " " . $sourceid;
+
+
+
+$out = shell_exec("Rscript /var/www/html/MODIS_Quytrinh/AodToPm.R " . $type . " "  . $fileResample[0] . " " . $fileResample[1] . " " . $sourceid);
+echo "Rscript /var/www/html/MODIS_Quytrinh/AodToPm.R " . $type . " "  . $fileResample[0] . " " . $fileResample[1] . " " . $sourceid;
+echo '\n'.$out;
+

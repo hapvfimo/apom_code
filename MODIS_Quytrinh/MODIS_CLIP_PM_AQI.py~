@@ -1,0 +1,1083 @@
+# -*- coding: utf-8 -*-
+import os
+import sys
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm 
+import matplotlib.colors as clr
+import psycopg2
+import gdal
+import numpy as np
+import xml.etree.ElementTree as ET
+from shutil import copyfile
+import datetime
+import re
+import traceback
+import string
+#from createAQI import *
+from os.path import basename
+from gdalconst import *
+from pylab import *
+
+##################### UPDATE TO DATABASE IN WINDOW SERVER ###############
+PM_TABLE = "prodmodispm.prodmodispm_vn_collection0"
+AQI_TCQT_TABLE = "prodaqi.prodmodisaqitcqt_vn_collection0"
+AQI_TCVN_TABLE = "prodaqi.prodmodisaqitcvn_vn_collection0"
+AQI_TCVN_NEWEST_TABLE = "prodaqi.prodmodisaqitcvn_newest_vn_collection0"
+AQI_TCQT_NEWEST_TABLE = "prodaqi.prodmodisaqitcqt_newest_vn_collection0"
+ID_MOD = 1
+ID_MYD = 2
+
+TYPE_MOD = 0
+TYPE_MYD = 1
+
+# update query
+#raster2pgsql = "/usr/pgsql-9.4/bin/raster2pgsql"
+raster2pgsql = "raster2pgsql"
+update_query1 = "UPDATE {0} SET rasref='{1}'::raster, filename='{2}', filepath='{3}', gridid={4}, aqstime='{5}'::timestamp WHERE type={6}" # tablename, rastertext, filename, satellite type (0-MOD, 1-MYD)
+update_query2 = "UPDATE {0} SET rasref='{1}'::raster, filename='{2}', filepath='{3}', gridid={4}, aqstime='{5}'::timestamp, type={6} WHERE id=1"
+read_raster_command = "{0} -a -f rasref -F {1} {2}" # raster2pgsql, filename, tablename
+# get aqstime on window server
+aqsqlnewest = "SELECT aqstime FROM {0} WHERE id=1"
+aqsqlsat = "SELECT aqstime FROM {0} WHERE type={1}"
+
+# class server to connect and manipulate data 
+class ServerWindow:
+        
+        # init
+        def __init__(self, host="192.168.0.61", dbname="apom", user="postgres", passwd="fimopostgre54321", port=5434 ):
+                self.con = None
+                self.host = host
+                self.dbname = dbname
+                self.user = user
+                self.passwd = passwd
+                self.port = port
+                self.cur = None 
+
+        # connect to server
+        def Connect(self):
+                try:
+                        self.con = psycopg2.connect(database=self.dbname, user=self.user, password=self.passwd, host=self.host, port=self.port) 
+                        self.cur = self.con.cursor()
+                        print("connect to database server successfully\n")
+                        return 1
+                except psycopg2.Error as e:
+                        print("can't connect to database server\n")
+                        return 0
+
+	def CheckNewestMapService(self, aqstime, table):
+		sql = aqsqlnewest.format(table)
+		try:
+			self.cur.execute(sql)
+			records = self.cur.fetchall()
+			#aqs = datetime.datetime.strptime(aqstime, "%Y-%m-%d %H:%M:%S")
+			if records[0][0]:
+				if aqstime > records[0][0]:
+					return 1
+		except psycopg2.Error as e:
+			print e
+			return 0
+		return 0
+	
+	def CheckNewestMapServiceSat(self, aqstime, table, sattype):
+		sql = aqsqlsat.format(table, sattype)
+		try:
+			self.cur.execute(sql)
+			records = self.cur.fetchall()
+			#aqs = datetime.datetime.strptime(aqstime, "%Y-%m-%d %H:%M:%S")
+			if aqstime > records[0][0]:
+				return 1
+		except psycopg2.Error as e:
+			print e
+			return 0
+		return 0
+
+        def UpdateTifMapService(self, table, tif_file, filepath, gridid, aqstime, sattype):
+
+                try:
+			tif_location = filepath + tif_file
+                        tif_script = os.popen(read_raster_command.format(raster2pgsql, tif_location, table)).read() #
+                        first_index = tif_script.find("('")
+                        last_index = tif_script.find("':")
+                        tif_ref = tif_script[first_index+2:last_index]
+					
+                        b = update_query1.format(table, tif_ref, tif_file, filepath, gridid, aqstime, sattype)
+                        #self.cur.execute(b)
+                        #self.cur.execute('COMMIT')
+			print "Successfully inserted {0} into map database server {1}".format(tif_file, table)
+                except psycopg2.Error as e:
+                        print tif_script
+                        print e	
+
+	def UpdateTifMapServiceNewest(self, table, tif_file, filepath, gridid, aqstime, sattype):
+
+                try:
+			tif_location = filepath + tif_file
+                        tif_script = os.popen(read_raster_command.format(raster2pgsql, tif_location, table)).read() #
+                        first_index = tif_script.find("('")
+                        last_index = tif_script.find("':")
+                        tif_ref = tif_script[first_index+2:last_index]
+					
+                        b = update_query2.format(table, tif_ref, tif_file, filepath, gridid, aqstime, sattype)
+                        #self.cur.execute(b)
+                        #self.cur.execute('COMMIT')
+			print "Successfully inserted {0} into map database server {1}".format(tif_file, table)
+                except psycopg2.Error as e:
+                        print tif_script
+                        print e	
+	
+
+        # disconnect
+        def Disconnect(self):
+                if self.con:
+                        self.con.close()
+
+def ExecuteUpdateTif(table, table_newest, tif_file, filepath, gridid, aqstime, sattype):
+        serv = ServerWindow()
+        s = serv.Connect()
+        
+	#isnewest = serv.CheckNewestMapService(aqstime, table_newest)
+	isnewestsat = serv.CheckNewestMapServiceSat(aqstime, table, sattype)
+	
+	if isnewestsat == 1:
+		serv.UpdateTifMapService(table, tif_file, filepath, gridid, aqstime, sattype)
+	#if isnewest == 1:
+		#serv.UpdateTifMapServiceNewest(table_newest, tif_file, filepath, gridid, aqstime, sattype)
+        
+        del serv
+        return 0
+#############################################################
+PMDIR = "/apom_data/apom/prod/ProdMODISPM_Province/2017/"
+AQITCVN = "/apom_data/apom/prod/ProMODISAQI/tcvn/2017/"
+AQITCQT = "/apom_data/apom/prod/ProMODISAQI/tcqt/2017/"
+PMVNTABLE = "prodpm.prodmodispm_vn_collection0" # 2010 - 2014
+PMPROVTABLE = "prodpm.prodmodispm_province_collection0"
+SHAPEPROV = "org.gis_adm1"
+AQITCVNVN = "prodaqi.prodmodisaqitcvn_vn_collection0"
+AQITCVNPROV = "prodaqi.prodmodisaqitcvn_province_collection0"
+AQITCQTVN = "prodaqi.prodmodisaqitcqt_vn_collection0" 
+AQITCQTPROV = "prodaqi.prodmodisaqitcqt_province_collection0"
+
+insert_pmprov = "INSERT INTO {0}(filename, filepath, pmid, gridid, max, min, avg, aqstime, rasref, id_tinh, type, sourceid) SELECT '{1}', '{2}', {3}, {4}, {5}, {6}, {7}, '{8}'::timestamp, '{9}'::raster, {10}, {11}, {12} WHERE NOT EXISTS (SELECT * FROM {0} AS T WHERE T.filename = '{1}')" 
+insert_aqivn = "INSERT INTO {0}(filename, filepath, gridid, max, min, avg, aqstime, rasref, id_vn, type, aqiid, sourceid) SELECT '{1}', '{2}', {3}, {4}, {5}, {6},'{7}'::timestamp, '{8}'::raster, {9}, {10}, {11}, {12} WHERE NOT EXISTS (SELECT * FROM {0} AS T WHERE T.filename = '{1}')"
+insert_aqiprov = "INSERT INTO {0}(filename, filepath, aqiid, gridid, max, min, avg, aqstime, rasref, id_tinh, type, sourceid) SELECT '{1}', '{2}', {3}, {4}, {5}, {6}, {7}, '{8}'::timestamp, '{9}'::raster, {10}, {11}, {12} WHERE NOT EXISTS (SELECT * FROM {0} AS T WHERE T.filename = '{1}')" 
+
+read_raster_command = "{0} -a -f rasref -F {1} {2}"
+#raster2pgsql = "/usr/pgsql-9.4/bin/raster2pgsql"
+raster2pgsql = "raster2pgsql"
+
+###################################################################
+NODATA = -9999.0
+PM25LOWVALUE = 0.0
+PM25HIGHVALUE = 500.0
+QCPM25 = 50
+
+# return threshod ranges of international for PM2.5
+def RangesPM25Global():
+
+	# declare array to save data
+	RANGE = []
+	# 7 sub-arrays to save 7 ranges
+	for i in range (0, 7):
+		RANGE.append([])
+	
+	# fill data in RANGE
+	RANGE[0].append(0.0)
+	RANGE[0].append(12.0)
+	
+	RANGE[1].append(12.0)
+	RANGE[1].append(35.4)
+
+	RANGE[2].append(35.4)
+	RANGE[2].append(55.4)
+	
+	RANGE[3].append(55.4)
+	RANGE[3].append(150.4)
+	
+	RANGE[4].append(150.4)
+	RANGE[4].append(250.4)
+		
+	RANGE[5].append(250.4)
+	RANGE[5].append(350.4)
+	
+	RANGE[6].append(350.4)
+	RANGE[6].append(500.0)
+	
+	return RANGE
+
+# return ranges AQI Global
+def AQIRangeGlobal():
+
+	# declare array to save data
+	RANGE = []
+	
+	# 7 sub-arrays to save 7 ranges
+	for i in range (0, 7):
+		RANGE.append([])
+
+	# fill data in RANGE
+	RANGE[0].append(0)
+	RANGE[0].append(50)
+	
+	RANGE[1].append(51)
+	RANGE[1].append(100)
+
+	RANGE[2].append(101)
+	RANGE[2].append(150)
+	
+	RANGE[3].append(151)
+	RANGE[3].append(200)
+	
+	RANGE[4].append(201)
+	RANGE[4].append(300)
+
+	RANGE[5].append(301)
+	RANGE[5].append(400)
+	
+	RANGE[6].append(401)
+	RANGE[6].append(500)
+	
+	return RANGE
+
+# return ranges AQI VietNam
+def AQIRangeVietNam():
+
+	# declare array to save data
+	RANGE = []
+	
+	# 7 sub-arrays to save 7 ranges
+	for i in range (0, 5):
+		RANGE.append([])
+
+	# fill data in RANGE
+	RANGE[0].append(0)
+	RANGE[0].append(50)
+	
+	RANGE[1].append(51)
+	RANGE[1].append(100)
+
+	RANGE[2].append(101)
+	RANGE[2].append(200)
+	
+	RANGE[3].append(201)
+	RANGE[3].append(300)
+	
+	RANGE[4].append(301)
+	RANGE[4].append(500)
+	
+	return RANGE
+###################################################################
+
+# calculate AQI value based on international standard 2012 - EPA
+def AQIInternationalStandard(pmfile):
+
+	# open pm file and get data band
+	dset = gdal.Open(pmfile, gdal.GA_Update)
+	dband = dset.GetRasterBand(1)
+	ddata = dband.ReadAsArray()
+	NODATA = dband.GetNoDataValue()
+
+	RANGE = RangesPM25Global()
+	AQIRANGE = AQIRangeGlobal()
+
+	# calculate AQI values
+	rg = 0
+	i = 0
+	j = 0
+	for n in ddata:
+		for m in n:
+			if ddata[i, j] >= RANGE[0][0] and ddata[i, j] <= RANGE[6][1]:
+				for rg in range (0, 6):
+					if ddata[i, j] >= RANGE[rg][0] and ddata[i, j] <= RANGE[rg][1]:
+						A = (AQIRANGE[rg][1] - AQIRANGE[rg][0])/(RANGE[rg][1] - RANGE[rg][0])
+						B = ddata[i, j] - RANGE[rg][0]
+						ddata[i, j] = int(A*B + AQIRANGE[rg][0])
+						break
+			else:
+				ddata[i, j] = NODATA
+			j = j + 1
+		j = 0
+		i = i + 1
+	
+	# save/close the file
+	dband.WriteArray(ddata)
+	dband.SetNoDataValue(NODATA)
+	del ddata, dband, dset
+	
+	return pmfile
+
+# calculate AQI value based on VietNam standard 2013: QCVN 05:2013/BTNMT
+def AQIVietNamStandard2013(pmfile):
+	
+	# open pm file and get data band
+	dset = gdal.Open(pmfile, gdal.GA_Update)
+	dband = dset.GetRasterBand(1)
+	ddata = dband.ReadAsArray()
+	NODATA = dband.GetNoDataValue()
+
+	PMLOWVALUE = PM25LOWVALUE
+	PMHIGHVALUE = PM25HIGHVALUE
+	QCPM = QCPM25
+
+	# calculate AQI values
+	i = 0
+	j = 0
+	for n in ddata:
+		for m in n:
+			if ddata[i, j] >= PMLOWVALUE and ddata[i, j] <= PMHIGHVALUE:
+				ddata[i, j] = int((ddata[i, j]*100)/QCPM)
+			else:
+				ddata[i, j] = NODATA
+			j = j + 1
+		j = 0
+		i = i + 1
+	
+	# save/close the file
+	dband.WriteArray(ddata)
+	dband.SetNoDataValue(NODATA)
+	del ddata, dband, dset
+	
+	return pmfile
+
+# reflect pixel values in specific ranges to represent integer values
+def CreateAQIFromPM(pmfile, TYPE, outdir):
+	
+	if not os.path.exists(outdir): os.makedirs(outdir)
+	# backup PM original file
+	copyfile(pmfile, "{0}data_temp.tif".format(outdir))
+
+	# if TYPE is 1 then convert data to AQI based on VietNam standard
+	if TYPE == 1:
+		AQIVietNamStandard2013("{0}data_temp.tif".format(outdir))
+	else:
+		AQIInternationalStandard("{0}data_temp.tif".format(outdir))
+
+	# backup AQI original file
+	aqifile = basename(pmfile)[:-4] + "_aqi.tif"
+	copyfile("{0}data_temp.tif".format(outdir), "{0}{1}".format(outdir, aqifile))
+
+	# remove temp files
+	os.remove("{0}data_temp.tif".format(outdir))
+
+	return aqifile
+
+###########################################################
+# This part for creating AQI PNG images 
+# return colors standard of international for PM2.5/PM10
+def ColorsGlobal():
+	
+	# declare array to save data
+	COLOR = []
+	
+	# 7 sub-arrays to save 7 ranges
+	for i in range (0, 7):
+		COLOR.append([])
+	
+	# fill data in RANGE
+	COLOR[0].append(0)
+	COLOR[0].append(228)
+	COLOR[0].append(0)
+	
+	COLOR[1].append(255)
+	COLOR[1].append(255)
+	COLOR[1].append(0)
+
+	COLOR[2].append(255)
+	COLOR[2].append(126)
+	COLOR[2].append(0)
+	
+	COLOR[3].append(255)
+	COLOR[3].append(0)
+	COLOR[3].append(0)
+	
+	COLOR[4].append(153)
+	COLOR[4].append(0)
+	COLOR[4].append(76)
+	
+	COLOR[5].append(126)
+	COLOR[5].append(0)
+	COLOR[5].append(35)
+	
+	COLOR[6].append(126)
+	COLOR[6].append(0)
+	COLOR[6].append(35)
+
+	return COLOR
+
+# return colors standard of VietNam for PM2.5/PM10
+def ColorsVietNam():
+	
+	# declare array to save data
+	COLOR = []
+	
+	# 7 sub-arrays to save 7 ranges
+	for i in range (0, 5):
+		COLOR.append([])
+	
+	# fill data in RANGE
+	COLOR[0].append(0)
+	COLOR[0].append(128)
+	COLOR[0].append(255)
+	
+	COLOR[1].append(255)
+	COLOR[1].append(255)
+	COLOR[1].append(0)
+
+	COLOR[2].append(255)
+	COLOR[2].append(126)
+	COLOR[2].append(0)
+	
+	COLOR[3].append(255)
+	COLOR[3].append(0)
+	COLOR[3].append(0)
+	
+	COLOR[4].append(102)
+	COLOR[4].append(51)
+	COLOR[4].append(0)
+	
+	return COLOR
+
+# create color file
+def CreateColorImage(inputfile, colorpalette, outputfile):
+	
+	# create color file from input file and color palette file	
+	os.system("gdaldem color-relief {0} {1} {2}".format(inputfile, colorpalette, outputfile))
+
+# append vrts
+def AppendVRTs(srcvrt, dstvrt):
+
+	# append vrt 
+	src = ET.parse(srcvrt)
+	srcroot = src.getroot()
+	# change band number in src vrt file to 4
+        for rasterband in srcroot.findall("VRTRasterBand"):
+                rasterband.set("band", "4")
+		break
+	src.write(srcvrt)
+
+	dst = ET.parse(dstvrt)
+	dstroot = dst.getroot()
+
+	inputXML =  srcroot.find('VRTRasterBand')
+	dstroot.append(inputXML)
+	dst.write(dstvrt)
+
+	# change data type information in dst vrt file
+	for rasterband in dstroot.findall("VRTRasterBand"):
+        	rasterband.set("dataType", "Byte")
+	dst.write(dstvrt)
+
+# create and merge vrt files into one
+def CreateAQIProdFromRGBAndAQI(colorfile, aqiconvert):
+	
+	# create vrt files from RGB files
+	colorvrt = colorfile[:-3] + "vrt"
+	os.system("gdal_translate -of VRT {0} {1}".format(colorfile, colorvrt))
+
+	aqiconvertvrt = aqiconvert[:-3] + "vrt"
+	#print aqiconvertvrt
+	os.system("gdal_translate -of VRT {0} {1}".format(aqiconvert, aqiconvertvrt))
+	AppendVRTs(aqiconvertvrt, colorvrt)
+	os.remove(aqiconvertvrt)
+	
+	# make AQI product
+	product = colorfile + ".AQI.tif"
+	os.system("gdal_translate {0} {1}".format(colorvrt, product))
+
+	# remove vrt files
+	os.remove(colorfile)
+	os.remove(colorvrt)
+
+	return product
+
+# reflect pixel values in specific ranges to represent integer values
+def CreateAQIFromPMForPNG(orifile, TYPE, oridir):
+	
+	# backup PM original file
+	valuemask = "{0}valuemask.tif".format(oridir)
+	transparent = "{0}transparent.tif".format(oridir)
+	copyfile(orifile, valuemask)
+	copyfile(orifile, transparent)
+
+	# get ranges and color palette
+	ranges = []	
+	if TYPE == 1:
+		COLOR = ColorsVietNam()
+		AQIRANGE = AQIRangeVietNam()
+	else:
+		COLOR = ColorsGlobal()
+		AQIRANGE = AQIRangeGlobal()
+
+	count = 0
+	for ncolors in COLOR:
+		ranges.append([])
+	for ncolors in COLOR:
+		ranges[count].append(count)
+		ranges[count].append(AQIRANGE[count][0])
+		ranges[count].append(AQIRANGE[count][1])
+		ranges[count].append(ncolors[0])
+		ranges[count].append(ncolors[1])
+		ranges[count].append(ncolors[2])
+		count = count + 1
+	# create color relief file 
+	relief = open("{0}color_relief.txt".format(oridir), "w")
+	for rge in ranges:
+		relief.write("{0} {1} {2} {3}\n".format(rge[0], rge[3], rge[4], rge[5]))
+	relief.write("{0} {1} {2} {3}\n".format(10, 0, 0, 0))
+	relief.close()
+
+	# create file contains discrete values of AQI for color effect
+
+	src = gdal.Open("{0}".format(valuemask), gdal.GA_Update)
+	band = src.GetRasterBand(1)
+	data = band.ReadAsArray()
+
+	srcA = gdal.Open("{0}".format(transparent), gdal.GA_Update)
+	bandA = srcA.GetRasterBand(1)
+	dataA = bandA.ReadAsArray()
+
+	# create mask for transparent image
+	i = 0
+	j = 0
+	for n in data:
+		for m in n:
+			for rge in ranges:
+				if data[i, j] >= rge[1] and data[i, j] <= rge[2]:
+					data[i, j] = int(rge[0])
+					dataA[i, j] = 255
+					break
+				if data[i, j] < 0.0:
+					data[i, j] = int(10)
+					dataA[i, j] = 0
+			j = j + 1
+		j = 0
+		i = i + 1
+
+	# save/close the file
+	band.WriteArray(data)
+	bandA.WriteArray(dataA)
+	del data, band, src, dataA, bandA, srcA
+
+	# create RGB color image for ranged file
+	if TYPE == 1:
+		aqi = orifile[:-4] + ".TCVN"
+	else:
+		aqi = orifile[:-4] + ".TCQT"
+	CreateColorImage("{0}".format(valuemask), "{0}color_relief.txt".format(oridir), aqi)
+	# create and merge vrt files and create AQI product
+	product = CreateAQIProdFromRGBAndAQI(aqi, "{0}".format(transparent))
+	os.system("gdal_translate -of PNG {0} {1}".format(product, product[:-3] + "png"))
+
+	# remove temp files
+	os.remove("{0}".format(valuemask))
+	os.remove(product)
+	os.remove("{0}color_relief.txt".format(oridir))
+	os.remove("{0}".format(transparent))
+	
+	return product
+
+# do everything for creating AQI products: Tiff, PNG
+def CreateAqiProducts(orifile, TYPE, oridir):
+	CreateAQIFromPMForPNG(orifile, TYPE, oridir)
+###########################################################
+
+######################### Create PM color images ########
+# generate color file
+def CreateColorMap(fcolor):
+	
+	# normalize 500 different PM values
+	data=np.arange(500)
+	norm = clr.Normalize(0, 499) 
+	n=norm(data) 
+
+	# color for 7 ranges of PM 
+	c1 = '#00E400' # 0 - 50
+	c2 = '#FFFF00' # 51 - 100
+	c3 = '#FF7E00' # 101 - 150
+	c4 = '#FF0000' # 151 - 200
+	c5 = '#99004C' # 201 - 300
+	c6 = '#7E0000' # 301 - 400
+	c7 = '#7E0000' # 401 - 500
+
+
+	# generater color map
+	pmcolormap = mpl.colors.LinearSegmentedColormap.from_list('pmcolors', [c1, c2, c3, c4, c5, c6, c7])
+	rgba = pmcolormap(n)
+	rgb = rgba[:,:3]
+
+	# write to color map files
+	relief = open(fcolor, "w")
+	i = 0
+	for color in rgb:
+		r = int(color[0]*255)
+		g = int(color[1]*255)
+		b = int(color[2]*255)
+		relief.write("{0} {1} {2} {3}\n".format(i, r, g, b))
+		i = i + 1
+	# specify color values for NODATA value
+	relief.write("{0} {1} {2} {3}\n".format(-1.0, 0, 0, 0))
+	
+	relief.close()
+	return 1
+
+# create transparent files
+def CreateTransparentBand(pmfile, savedir, transfile):
+	ori = "{0}/{1}".format(savedir, pmfile)
+	copyfile(ori, transfile)
+
+	src = gdal.Open(ori, gdal.GA_ReadOnly)
+	band = src.GetRasterBand(1)
+	data = band.ReadAsArray()
+
+	srcA = gdal.Open(transfile, gdal.GA_Update)
+	bandA = srcA.GetRasterBand(1)
+	dataA = bandA.ReadAsArray()
+
+	i = 0
+	j = 0
+	for n in data:
+		for m in n:
+			if data[i, j] > 0.0:
+				dataA[i, j] = 255
+			else:
+				dataA[i, j] = 0
+			j = j + 1
+		j = 0
+		i = i + 1
+	bandA.WriteArray(dataA)
+	del data, band, src, dataA, bandA, srcA
+
+# calculate AQI value based on international standard 2013: QCVN 05:2013/BTNMT
+def PMConversion(pmfile):
+
+	# open pm file and get data band
+	dset = gdal.Open(pmfile, gdal.GA_Update)
+	dband = dset.GetRasterBand(1)
+	ddata = dband.ReadAsArray()
+
+	RANGE = RangesPM25Global()
+	AQIRANGE = AQIRangeGlobal()
+
+	# calculate AQI values and convert to be in range(0, 1)
+	rg = 0
+	i = 0
+	j = 0
+	for n in ddata:
+		for m in n:
+			if ddata[i, j] >= RANGE[0][0] and ddata[i, j] <= RANGE[6][1]:
+				for rg in range (0, 6):
+					if ddata[i, j] >= RANGE[rg][0] and ddata[i, j] <= RANGE[rg][1]:
+						A = (AQIRANGE[rg][1] - AQIRANGE[rg][0])/(RANGE[rg][1] - RANGE[rg][0])
+						B = ddata[i, j] - RANGE[rg][0]
+						ddata[i, j] = int(A*B + AQIRANGE[rg][0])
+						break
+			else:
+				ddata[i, j] = -1.0
+			j = j + 1
+		j = 0
+		i = i + 1
+	
+	# save/close the file
+	dband.WriteArray(ddata)
+	del ddata, dband, dset
+	
+	return pmfile
+
+def CreatePM25PNGImg(pmfile, savedir):
+
+	# backup PM original file
+	copyfile("{0}/{1}".format(savedir, pmfile), "{0}/data_temp.tif".format(savedir))
+	
+	# convert PM to AQI
+	PMConversion("{0}/data_temp.tif".format(savedir))
+		
+	# create color table and create color file for PM
+	CreateColorMap("{0}/color_relief.txt".format(savedir))
+	colorfile = savedir + "/" + pmfile[:-4] + ".col"
+	CreateColorImage("{0}/data_temp.tif".format(savedir), "{0}/color_relief.txt".format(savedir), colorfile)
+	transfile = "{0}/transparent.tif".format(savedir)
+	CreateTransparentBand(pmfile, savedir, transfile)
+	product = CreateAQIProdFromRGBAndAQI(colorfile, transfile)
+	os.system("gdal_translate -of PNG {0} {1}".format(product, product[:-11] + "png"))
+	# remove temp files
+	os.remove(product)
+	os.remove("{0}/data_temp.tif".format(savedir))
+	os.remove("{0}/color_relief.txt".format(savedir))
+
+###########################################################
+# calculate max, min, avg in tif file
+def CalMaxMinAvgTif(tifname):
+	dset = gdal.Open(tifname, gdal.GA_ReadOnly)
+	dband = dset.GetRasterBand(1)
+	ddata = dband.ReadAsArray()
+
+	maxval = 0.0
+	avg = 0.0
+	minval = 3000.0
+	count  = 0
+	i = 0
+	j = 0
+	for n in ddata:
+		for m in n:
+			if ddata[i, j] > 0:
+				count = count + 1
+				if ddata[i, j] > maxval:
+					maxval = ddata[i, j]
+				if ddata[i, j] < minval:
+					minval = ddata[i, j]
+				avg = avg + ddata[i, j]
+			j = j + 1
+		j = 0
+		i = i + 1
+	if count <= 0:
+		avg = 0.0
+		maxval = 0.0
+		minval = 0.0
+	else:
+		avg = avg/count
+	return maxval, avg, minval
+
+def SignToNotSign(str):
+    try:
+        if str == '': return
+        if type(str).__name__ == 'unicode': str = str.encode('utf-8')
+        list_pat = ["á|à|ả|ạ|ã|â|ấ|ầ|ẩ|ậ|ẫ|ă|ắ|ằ|ẳ|ặ|ẵ", "Á|À|Ả|Ạ|Ã|Â|Ấ|Ầ|Ẩ|Ậ|Ẫ|Ă|Ắ|Ằ|Ẳ|Ặ|Ẵ",
+                    "đ", "Đ", "í|ì|ỉ|ị|ĩ", "Í|Ì|Ỉ|Ị|Ĩ", "é|è|ẻ|ẹ|ẽ|ê|ế|ề|ể|ệ|ễ", "É|È|Ẻ|Ẹ|Ẽ|Ê|Ế|Ề|Ể|Ệ|Ễ",
+                    "ó|ò|ỏ|ọ|õ|ô|ố|ồ|ổ|ộ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ", "Ó|Ò|Ỏ|Ọ|Õ|Ô|Ố|Ồ|Ổ|Ộ|Ỗ|Ơ|Ớ|Ờ|Ở|Ợ|Ỡ",
+                    "ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ử|ự|ữ", "Ú|Ù|Ủ|Ụ|Ũ|Ư|Ứ|Ừ|Ử|Ự|Ữ", "ý|ỳ|ỷ|ỵ|ỹ", "Ý|Ỳ|Ỷ|Ỵ|Ỹ"]
+        list_re = ['a', 'A', 'd', 'D', 'i', 'I', 'e', 'E', 'o', 'O', 'u', 'U', 'y', 'Y']
+        for i in range(len(list_pat)):
+            str = re.sub(list_pat[i], list_re[i], str)
+        return str
+    except:
+        traceback.print_exc()
+
+# class server to connect and manipulate data 
+class Server:
+	
+	# init
+	def __init__(self, host="118.70.72.13", dbname="apom", user="postgres", passwd="fimopostgre54321", port=8100 ):
+		self.con = None
+		self.host = host
+		self.dbname = dbname
+		self.user = user
+		self.passwd = passwd
+		self.port = port
+		self.cur = None 
+
+	# connect to server
+	def Connect(self):
+		try:
+			self.con = psycopg2.connect(database=self.dbname, user=self.user, password=self.passwd, host=self.host, port=self.port)	
+			self.cur = self.con.cursor()
+			print("connect to database server successfully\n")
+			return 1
+		except psycopg2.Error as e:
+			print("can't connect to database server\n")
+			return 0
+
+	# return insert raster query
+	def InsertRasterQuery(self, imgdir, imgname, table):
+		tif_location = imgdir + "/" + imgname
+		tif_script = os.popen(read_raster_command.format(raster2pgsql, tif_location, table)).read() #
+		first_index = tif_script.find("('")
+		last_index = tif_script.find("':")
+		tif_ref = tif_script[first_index+2:last_index]
+		return tif_ref
+
+	# insert and update PM provinces
+	def InsertTIFPM(self, table, fname, fdir, oriid, grid_id, id_shape, aqstime, sat_type, sourceid):
+		CreatePM25PNGImg(fname, fdir)
+		maxval, avg, minval = CalMaxMinAvgTif("{0}/{1}".format(fdir, fname))
+		if maxval <= 0.0:
+			return maxval
+		fdir_store = fdir.replace("/apom_data/", "")
+		raster = self.InsertRasterQuery(fdir, fname, table)
+		insertsql = insert_pmprov.format(table, fname, fdir_store, oriid, grid_id, maxval, minval, avg, aqstime, raster, id_shape, sat_type, sourceid) # insert province
+		try:
+			self.cur.execute(insertsql)
+			self.con.commit()
+			return 1
+			#print("inserted information of {0} into database\n".format(fname))
+		except psycopg2.Error as e:
+			print e.pgerror
+			return 0
+		
+		return 1
+
+	# insert and update AQI vietnam/provinces
+	def InsertTIFAQI(self, table, fname, fdir, oriid, grid_id, id_shape, aqstime, sat_type, typeinsert, sourceid):
+		maxval, avg, minval = CalMaxMinAvgTif("{0}/{1}".format(fdir, fname))
+		if maxval <= 0.0:
+			return maxval
+		fdir_store = fdir.replace("/apom_data/", "")
+		raster = self.InsertRasterQuery(fdir, fname, table)
+		if typeinsert == "VN":
+			insertsql = insert_aqivn.format(table, fname, fdir_store, grid_id, maxval, minval, avg, aqstime, raster, id_shape, sat_type, oriid, sourceid) # insert vietnam
+		if typeinsert == "PROV":
+			insertsql = insert_aqiprov.format(table, fname, fdir_store, oriid, grid_id, maxval, minval, avg, aqstime, raster, id_shape, sat_type, sourceid) # insert province
+		try:
+			self.cur.execute(insertsql)
+			self.con.commit()
+			#print("inserted information of {0} into database\n".format(fname))
+		except psycopg2.Error as e:
+			print e.pgerror
+			return 0
+		return 1
+		
+	# ++++++ clip raster ++++++
+	# create aqi images
+	def MakeAQIFromPM(self, pmfile):
+		aqidir = basename(pmfile)[:-4]
+		aqifilevn = CreateAQIFromPM(pmfile, 1, "{0}{1}/".format(AQITCVN, aqidir))
+		aqifileqt = CreateAQIFromPM(pmfile, 0, "{0}{1}/".format(AQITCQT, aqidir))
+		aqitcvn = "{0}{1}/".format(AQITCVN, aqidir)
+		aqitcqt = "{0}{1}/".format(AQITCQT, aqidir) 
+		os.system("chmod 777 -R {0}".format(aqitcvn[:-1]))
+		os.system("chmod 777 -R {0}".format(aqitcqt[:-1]))
+		return aqitcvn, aqitcqt, aqifilevn, aqifileqt
+		
+	# Insert and update AQI provinces
+	def InsUpdAQIVietnamAndProvinces(self, pmfile, aqidir, aqifile, oripmtable, oriaqitable, aqiprovtable, shapetable, typeaqi, sat_type, sourceid):
+		try:
+			#print pmfile + " " + aqidir + " " + aqifile + " " + oripmtable + " " + oriaqitable + " " + aqiprovtable + " " + shapetable + " " + typeaqi;			
+			pmbasename = basename(pmfile)
+			sql = "SELECT id FROM {0} WHERE filename = '{1}'".format(oripmtable, pmbasename)
+			idpm = ""
+			self.cur.execute(sql)
+			idpm = self.cur.fetchall()
+			# insert AQI full to database
+			oripminfo = "SELECT id, gridid, aqstime FROM {0} WHERE filename='{1}'".format(oripmtable, pmbasename)
+			self.cur.execute(oripminfo)
+			records = self.cur.fetchall()
+
+			aqiid =  records[0][0]
+			gridid = records[0][1]
+			aqstime = records[0][2]
+			filepath = aqidir
+		
+			self.InsertTIFAQI(oriaqitable, aqifile, aqidir, aqiid, gridid, 1, aqstime, sat_type, "VN", sourceid)
+
+		except psycopg2.Error as e:
+			print e.pgerror
+			return 0
+		# create province
+		self.CreateProvince(oriaqitable, aqiprovtable, shapetable, aqidir[:-1], aqifile ,"AQI", typeaqi, sat_type, sourceid)
+		return 0
+		
+	# Create AQI Vietnam images tcvn/tcqt
+	def ProcessingAQI(self, pmfile, oripmtable, oriaqitabletcvn, aqiprovtabletcvn, oriaqitabletcqt, aqiprovtabletcqt, shapetable, sat_type, sourceid):
+		aqitcvndir, aqitcqtdir, aqifilevn, aqifileqt = self.MakeAQIFromPM(pmfile)
+		fullpath = "{0}{1}".format(aqitcvndir, aqifilevn)
+		CreateAqiProducts(fullpath, 1, aqitcvndir)
+		fullpath = "{0}{1}".format(aqitcqtdir, aqifileqt)
+		CreateAqiProducts(fullpath, 0, aqitcqtdir)
+		# insert data
+		print "Processing AQI TCVN..."
+		self.InsUpdAQIVietnamAndProvinces(pmfile, aqitcvndir, aqifilevn, oripmtable, oriaqitabletcvn, aqiprovtabletcvn, shapetable, "VN", sat_type, sourceid)
+		print "Finished"
+		print "Processing AQI TCQT..."
+		self.InsUpdAQIVietnamAndProvinces(pmfile, aqitcqtdir, aqifileqt, oripmtable, oriaqitabletcqt, aqiprovtabletcqt, shapetable, "QT", sat_type, sourceid)	
+		print "Finished"
+		
+	# create province PM/AQI file
+	def CreateProvince(self, oritable, provtable, shapetable, savedir, filename, datatype, typeaqi, sat_type, sourceid):
+		provname = ""
+		# get inforation for this pm image
+		oripminfo = "SELECT id, gridid, aqstime FROM {0} WHERE filename='{1}'".format(oritable, filename)
+		try:
+			self.cur.execute(oripminfo)
+			records = self.cur.fetchall()
+		except psycopg2.Error as e:
+			print "FAILED"
+			return 0
+		pmid =  records[0][0]
+		gridid = records[0][1]
+		aqstime = records[0][2]
+		
+		## update data in map service database: 112.137.129.222:5434
+
+		if datatype == "AQI":
+			if typeaqi == "VN":
+				map_table = AQI_TCVN_TABLE
+				map_table_newest = AQI_TCVN_NEWEST_TABLE 
+			else: 
+				map_table = AQI_TCQT_TABLE
+				map_table_newest = AQI_TCQT_NEWEST_TABLE 
+		
+			#ExecuteUpdateTif(map_table, map_table_newest, filename, savedir + "/", gridid, aqstime, sat_type)
+		
+		# create and insert province pm images into database
+		for count in range (1, 64):
+			sql1 = "select oid, lowrite(lo_open(oid, 131072), tif) AS num_bytes FROM (VALUES (lo_create(0),ST_AsTIFF((select ST_Clip ({0}.rasref, {1}.shape) FROM {2}, {3} where {4}.id = {5} and {6}.filename = '{7}' limit 1)))) AS v(oid,tif)".format(oritable, shapetable, shapetable, oritable, shapetable, count, oritable, filename)
+			sql2 = "select name from {0} where {1}.id = {2}".format(shapetable, shapetable, count)
+			self.cur.execute(sql1)
+			records = self.cur.fetchall()
+			self.cur.execute(sql2)
+			name = self.cur.fetchall()
+			provname = SignToNotSign(name[0][0])
+			provname = provname.replace(' ', '_')
+			provname = "{0}-{1}".format(filename[:-4], provname)
+			sqlexport = "select lo_export({0}, '{1}/{2}.tif')".format(records[0][0], savedir, provname)
+			sqlexport1 = "select lo_unlink({0})".format(records[0][0])
+			self.cur.execute(sqlexport)	
+			self.cur.execute(sqlexport1)
+			# insert and update province image into database
+			if datatype == "PM":
+				self.InsertTIFPM(provtable, "{0}.tif".format(provname), "{0}/".format(savedir), pmid, gridid, count, aqstime, sat_type, sourceid)
+			else:
+				imgfull = "{0}/{1}.tif".format(savedir, provname)
+				if typeaqi == "VN":
+					CreateAqiProducts(imgfull, 1, "{0}/".format(savedir))
+				else:
+					CreateAqiProducts(imgfull, 0, "{0}/".format(savedir))
+				self.InsertTIFAQI(provtable, "{0}.tif".format(provname), "{0}/".format(savedir), pmid, gridid, count, aqstime, sat_type, "PROV", sourceid)
+			
+			provname = ""
+		return 0
+
+	# load and write pm file to disk
+	def ProcessingPM(self, pmtable, pmdir, pmprovtable, shapetable, pmname, sat_type, sourceid):
+		try:
+			sql = "select oid, lowrite(lo_open(oid, 131072), tif) AS num_bytes FROM (VALUES (lo_create(0),ST_AsTIFF((select {0}.rasref FROM {1} where {1}.filename = '{2}' limit 1)))) AS v(oid,tif)".format(pmtable, pmtable, pmname)
+			#print sql
+			self.cur.execute(sql)
+			records = self.cur.fetchall()
+			savedir = "{0}{1}".format(pmdir, pmname[:-4])
+			if not os.path.exists(savedir): os.makedirs(savedir)
+			os.system("chmod 777 {0}".format(savedir))
+			sqlexport = "select lo_export({0}, '{1}/{2}')".format(records[0][0], savedir, pmname)
+			sqlexport1 = "select lo_unlink({0})".format(records[0][0])
+			#print sqlexport
+			#print sqlexport1
+			self.cur.execute(sqlexport)	
+			self.cur.execute(sqlexport1)
+		except psycopg2.Error as e:
+			print "Failed to load and write pm file", e.pgerror
+			return 1
+		#print "Load and write PM VietNam file successfully"
+		pm = "{0}/{1}".format(savedir, pmname)
+		CreatePM25PNGImg(pmname, savedir) 
+		self.CreateProvince(pmtable, pmprovtable, shapetable, savedir, pmname, "PM", "", sat_type, sourceid)
+		return pm
+
+	# check pmfile exist
+	def CheckPMDatabase(self, pmfile, oripmtable):
+		sql = "select count(filename) FROM {0} WHERE {1}.filename = '{2}'".format(oripmtable, oripmtable, pmfile)
+		try:
+			self.cur.execute(sql)
+			records = self.cur.fetchall()
+			if records[0][0] == 1:
+				return 0
+		except psycopg2.Error as e:
+			print "Can't find pm file {0} in database".format(pmfile)
+			return 1
+		return 1
+		
+	# get pm name
+	def GetPmFilename(self, pmtable):
+		sql = "SELECT filename, to_char(aqstime, 'yyyy'), type, sourceid FROM {0} WHERE id = 537 or id = 539 ORDER BY aqstime asc".format(pmtable)
+		#sql = "select filename, to_char(aqstime, 'yyyy'), type, sourceid from prodpm.prodmodispm_vn_collection0 where aqstime in (select distinct aqstime from prodpm.prodmodispm_province_collection0 where type = 0 and aqstime not in ( select distinct aqstime from prodaqi.prodmodisaqitcqt_province_collection0 where type = 0))order by aqstime desc"
+		self.cur.execute(sql)
+		records = self.cur.fetchall()
+		return records
+		
+	# disconnect
+	def Disconnect(self):
+		if self.con:
+			self.con.close()
+
+def ExecuteAll(pmname, sat_type, sourceid):
+	#print(pmname)
+	#print sat_type
+	# run manual from input HaPV
+	dserv = Server()
+	s = dserv.Connect()
+	
+	print "Processing PM data..."
+	pm = dserv.ProcessingPM(PMVNTABLE, PMDIR, PMPROVTABLE, SHAPEPROV, pmname, sat_type, sourceid) # error with pm is 0
+	print str(pm) + " " + "value;";
+	print "Finished"
+	print "Processing AQI data..."
+
+	dserv.ProcessingAQI(pm, PMVNTABLE, AQITCVNVN, AQITCVNPROV, AQITCQTVN, AQITCQTPROV, SHAPEPROV, sat_type, sourceid )
+	
+	print "Processing done"
+	del dserv
+
+	return 0
+
+#pmname = "MOD04_L2.A2015097.0410.051.2015097135603_uk.tif"
+#sat_type = 0
+#sourceid = 0
+#ExecuteAll(pmname, 0, 0)
+
+#
+# Truoc: 1 - AQUA, 0 - TERRA
+# Sau:   1 - Tram thu, 0 - NASA
+# 
+#ExecuteAll(sys.argv[1], sys.argv[2],sys.argv[3])
+#ExecuteAll(pmname, sat_type, sourceid)
+#ExecuteAll("MYD04L2.A2016308.0537.006.2016308054525_uk.tif", 1, 1)
+#ExecuteAll("MOD04L2.A2016308.0407.006.2016308041558_uk.tif", 0, 1)
+
+#########
+#ExecuteAll("MOD04L2.A2016308.0407.006.2016308041558_uk.tif", 0, 1)
+#ExecuteAll("MYD04L2.A2016308.0537.006.2016308054525_uk.tif", 1, 1)
+#ExecuteAll("MOD04L2.A2016309.0312.006.2016309032120_uk.tif", 0, 1)
+#ExecuteAll("MYD04L2.A2016309.0619.006.2016309062839_uk.tif", 1, 1)
+#ExecuteAll("MOD04L2.A2016310.0354.006.2016310040405_uk.tif", 0, 1)
+
+
+ExecuteAll("MYD04L2.A2016286.0612.006.2016286062231_uk.tif", 1, 1)
+ExecuteAll("MOD04L2.A2016287.0348.006.2016287035808_uk.tif", 0, 1)
+ExecuteAll("MYD04L2.A2016288.0600.006.2016288061015_uk.tif", 1, 1)
+ExecuteAll("MOD04L2.A2016289.0336.006.2016289034602_uk.tif", 0, 1)
+ExecuteAll("MYD04L2.A2016291.0631.006.2016291064042_uk.tif", 1, 1)
+ExecuteAll("MOD04L2.A2016292.0407.006.2016292041559_uk.tif", 0, 1)
+ExecuteAll("MYD04L2.A2016292.0537.006.2016292054520_uk.tif", 1, 1)
+ExecuteAll("MOD04L2.A2016293.0312.006.2016293032122_uk.tif", 0, 1)
+ExecuteAll("MOD04L2.A2016294.0354.006.2016294040406_uk.tif", 0, 1)
+ExecuteAll("MOD04L2.A2016295.0300.006.2016295030848_uk.tif", 0, 1)
+ExecuteAll("MOD04L2.A2016302.0306.006.2016302031506_uk.tif", 0, 1)
+ExecuteAll("MYD04L2.A2016302.0612.006.2016302062232_uk.tif", 1, 1)
+ExecuteAll("MOD04L2.A2016303.0348.006.2016303035806_uk.tif", 0, 1)
+ExecuteAll("MOD04L2.A2016305.0336.006.2016305034600_uk.tif", 0, 1)
+
+
+
+#ExecuteAll("MOD04_L2.A2015092.0350.051.2015092140005.hdf_DT_10km_uk.tif", 0)
+#ExecuteAll("MOD04_L2.A2015103.0335.051.2015103222033.hdf_DT_10km_uk.tif", 0)
+#ExecuteAll("MYD04_L2.A2015093.0605.006.2015093213708.hdf_DT_10km_uk.tif", 1)
+	
+	### Manual run 
+
+
+"""
+def ExecuteAll():	
+	dserv = Server()
+	s = dserv.Connect()
+	records = dserv.GetPmFilename(PMVNTABLE)
+	#print records
+	#exit()
+	for pmname in records:
+		d = dserv.CheckPMDatabase(pmname[0], PMVNTABLE)
+		#print pmname[0], pmname[1], pmname[2], pmname[3]
+		if d == 1:
+			print "can't find {0} in database".format(pmname[0])
+			continue
+		PMDIR = "/apom_data/apom/prod/ProdMODISPM_Province/" + pmname[1] + "/"
+		global AQITCVN # call the global first
+		AQITCVN = "/apom_data/apom/prod/ProMODISAQI/tcvn/" + pmname[1] + "/"
+
+		global AQITCQT # call the global first
+		AQITCQT = "/apom_data/apom/prod/ProMODISAQI/tcqt/" + pmname[1] + "/"
+		#print PMDIR, " " , AQITCVN, " " , AQITCQT
+		#exit()
+		pm = dserv.ProcessingPM(PMVNTABLE, PMDIR, PMPROVTABLE, SHAPEPROV, pmname[0], pmname[2], pmname[3])
+		dserv.ProcessingAQI(pm, PMVNTABLE, AQITCVNVN, AQITCVNPROV, AQITCQTVN, AQITCQTPROV, SHAPEPROV, pmname[2], pmname[3])
+	del dserv
+	return 0
+ExecuteAll()
+	#"""
+	#""" Automatic run """
+

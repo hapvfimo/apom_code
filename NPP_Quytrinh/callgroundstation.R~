@@ -1,0 +1,20 @@
+#import library
+library(rPython)
+
+create_aqi_file="/var/www/html/MODIS/HaPV/NPP_Quytrinh/test.py"
+
+#python.assign("workdiraot", commandArgs(TRUE)[1])
+#python.assign("workdirlst", commandArgs(TRUE)[2]) # sat_type is mod:0, myd:1
+#python.assign("sourceid", commandArgs(TRUE)[3])
+#python.load(create_aqi_file) # sao ko thay a it may hon a
+
+python.load(create_aqi_file, get.exception = TRUE)
+#result <- system(paste("sh /var/www/html/MODIS/HaPV/NPP_Quytrinh/test.sh ", commandArgs(TRUE)[1], " ", commandArgs(TRUE)[2], " ", commandArgs(TRUE)[3]));
+#print(paste("sh test.sh", commandArgs(TRUE)[1], commandArgs(TRUE)[2], commandArgs(TRUE)[3]));
+#python.load(commandArgs(TRUE)[1], commandArgs(TRUE)[2], 1)
+#print(result)
+
+# python.assign("pmname",uk_file_name)
+# python.assign("sat_type",type) # sat_type is mod:0, myd:1
+# python.assign("sourceid", commandArgs(TRUE)[4])
+# python.load(create_aqi_file) # sao ko thay a it may hon a

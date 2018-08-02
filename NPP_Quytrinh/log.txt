@@ -1,0 +1,774 @@
+[2016-04-26 21:08:35] successfully extracted all gzip files
+[2016-04-26 21:08:35] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 21:27:58] connect to database server successfully
+[2016-04-26 21:27:58] can't insert GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 to database server: column "sourceid" of relation "satorgviirsaot" does not exist
+LINE 1: INSERT INTO org.satorgviirsaot(sourceid, aqstime, filename, ...
+                                       ^
+
+[2016-04-26 21:27:58] successfully move hdf and resample files to corressponding directories
+[2016-04-26 21:27:58] successfully extracted all gzip files
+[2016-04-26 21:28:01] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 21:42:06] connect to database server successfully
+[2016-04-26 21:42:07] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-26 21:42:07] successfully move hdf and resample files to corressponding directories
+[2016-04-26 21:42:14] successfully extracted all gzip files
+[2016-04-26 21:42:15] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 22:01:22] connect to database server successfully
+[2016-04-26 22:01:22] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-26 22:01:22] successfully move hdf and resample files to corressponding directories
+[2016-04-26 22:01:22] successfully extracted all gzip files
+[2016-04-26 22:01:24] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 22:18:50] connect to database server successfully
+[2016-04-26 22:18:51] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-26 22:18:51] successfully move hdf and resample files to corressponding directories
+[2016-04-26 23:02:49] successfully extracted all gzip files
+[2016-04-26 23:02:50] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 23:07:33] successfully extracted all gzip files
+[2016-04-26 23:07:33] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 23:28:18] connect to database server successfully
+[2016-04-26 23:28:18] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-26 23:28:18] successfully extracted all gzip files
+[2016-04-26 23:28:20] successfully aggregated geolocation files and it's matching data file
+[2016-04-26 23:45:50] connect to database server successfully
+[2016-04-26 23:45:51] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 00:05:56] successfully extracted all gzip files
+[2016-04-27 00:05:57] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 00:16:11] connect to database server successfully
+[2016-04-27 00:16:11] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-27 00:16:11] successfully inserted resample data into database
+[2016-04-27 00:16:11] successfully extracted all gzip files
+[2016-04-27 00:16:13] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 00:23:58] connect to database server successfully
+[2016-04-27 00:23:58] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 00:23:59] successfully inserted resample data into database
+[2016-04-27 09:36:57] successfully extracted all gzip files
+[2016-04-27 09:36:57] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 09:47:39] connect to database server successfully
+[2016-04-27 09:47:39] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-27 09:47:39] successfully inserted resample data into database
+[2016-04-27 09:47:39] successfully extracted all gzip files
+[2016-04-27 09:47:43] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 09:55:38] connect to database server successfully
+[2016-04-27 09:55:39] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 09:55:40] successfully inserted resample data into database
+[2016-04-27 15:13:13] successfully extracted all gzip files
+[2016-04-27 15:13:13] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 15:23:45] connect to database server successfully
+[2016-04-27 15:23:45] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-27 15:23:45] successfully inserted resample data into database
+[2016-04-27 15:23:45] successfully extracted all gzip files
+[2016-04-27 15:23:49] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 15:31:35] connect to database server successfully
+[2016-04-27 15:31:36] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 15:31:37] successfully inserted resample data into database
+[2016-04-27 15:46:23] successfully extracted all gzip files
+[2016-04-27 15:46:24] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 15:56:29] connect to database server successfully
+[2016-04-27 15:56:29] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-27 15:56:30] successfully inserted resample data into database
+[2016-04-27 15:56:30] successfully move hdf and resample files to corressponding directories
+[2016-04-27 15:56:30] successfully extracted all gzip files
+[2016-04-27 15:56:33] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 16:04:24] connect to database server successfully
+[2016-04-27 16:04:25] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 16:04:25] successfully inserted resample data into database
+[2016-04-27 16:04:25] successfully move hdf and resample files to corressponding directories
+[2016-04-27 16:22:57] successfully extracted all gzip files
+[2016-04-27 16:22:57] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 16:42:59] connect to database server successfully
+[2016-04-27 16:42:59] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-27 16:42:59] successfully inserted resample data into database
+[2016-04-27 16:42:59] successfully move hdf and resample files to corressponding directories
+[2016-04-27 16:42:59] successfully extracted all gzip files
+[2016-04-27 16:43:01] successfully aggregated geolocation files and it's matching data file
+[2016-04-27 17:00:36] connect to database server successfully
+[2016-04-27 17:00:37] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-27 17:00:37] successfully inserted resample data into database
+[2016-04-27 17:00:37] successfully move hdf and resample files to corressponding directories
+[2016-04-28 10:34:07] successfully extracted all gzip files
+[2016-04-28 10:34:07] successfully aggregated geolocation files and it's matching data file
+[2016-04-28 10:55:23] connect to database server successfully
+[2016-04-28 10:55:23] successfully inserted information of GAERO-VAOOO_npp_d20160426_t0530118_e0538440_b00001_c20160426062012.h5 into database
+[2016-04-28 10:55:23] successfully inserted resample data into database
+[2016-04-28 10:55:23] successfully move hdf and resample files to corressponding directories
+[2016-04-28 10:55:23] successfully extracted all gzip files
+[2016-04-28 10:55:26] successfully aggregated geolocation files and it's matching data file
+[2016-04-28 11:13:10] connect to database server successfully
+[2016-04-28 11:13:11] successfully inserted information of GMTCO-VLSTO_npp_d20160426_t0530118_e0538440_b00001_c20160426063723.h5 into database
+[2016-04-28 11:13:11] successfully inserted resample data into database
+[2016-04-28 11:13:11] successfully move hdf and resample files to corressponding directories
+[2016-10-13 16:02:02] successfully extracted all gzip files
+[2016-10-13 16:02:02] successfully aggregated geolocation files and it's matching data file
+[2016-10-13 17:49:35] successfully extracted all gzip files
+[2016-10-13 17:49:35] successfully aggregated geolocation files and it's matching data file
+[2016-10-13 17:52:30] successfully extracted all gzip files
+[2016-10-13 17:52:31] successfully aggregated geolocation files and it's matching data file
+[2016-10-13 18:12:23] can't connect to database server: could not connect to server: Connection timed out
+	Is the server running on host "112.137.129.222" and accepting
+	TCP/IP connections on port 1188?
+
+[2016-10-13 18:12:23] successfully extracted all gzip files
+[2016-10-13 18:12:45] successfully aggregated geolocation files and it's matching data file
+[2016-10-13 18:31:27] can't connect to database server: could not connect to server: Connection timed out
+	Is the server running on host "112.137.129.222" and accepting
+	TCP/IP connections on port 1188?
+
+[2016-10-14 14:23:00] successfully extracted all gzip files
+[2016-10-14 14:23:01] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 14:42:55] can't connect to database server: could not connect to server: Connection timed out
+	Is the server running on host "112.137.129.222" and accepting
+	TCP/IP connections on port 1188?
+
+[2016-10-14 14:42:55] successfully extracted all gzip files
+[2016-10-14 14:43:18] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 15:01:09] can't connect to database server: could not connect to server: Connection refused
+	Is the server running on host "112.137.129.222" and accepting
+	TCP/IP connections on port 1188?
+
+[2016-10-14 18:09:05] successfully extracted all gzip files
+[2016-10-14 18:09:06] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 18:18:37] connect to database server successfully
+[2016-10-14 18:18:37] successfully inserted information of GAERO-VAOOO_npp_d20161013_t0542268_e0550590_b00001_c20161013064726.h5 into database
+[2016-10-14 18:18:37] successfully inserted resample data into database
+[2016-10-14 18:18:37] successfully move hdf and resample files to corressponding directories
+[2016-10-14 18:18:37] successfully extracted all gzip files
+[2016-10-14 18:19:01] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 18:27:05] connect to database server successfully
+[2016-10-14 18:27:08] successfully inserted information of GMTCO-VLSTO_npp_d20161013_t0542268_e0550590_b00001_c20161013065818.h5 into database
+[2016-10-14 18:27:08] successfully inserted resample data into database
+[2016-10-14 18:27:08] successfully move hdf and resample files to corressponding directories
+[2016-10-14 20:53:29] successfully extracted all gzip files
+[2016-10-14 20:53:30] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 21:02:53] connect to database server successfully
+[2016-10-14 21:02:53] successfully inserted information of GAERO-VAOOO_npp_d20161014_t0524568_e0533290_b00001_c20161014062334.h5 into database
+[2016-10-14 21:02:54] successfully inserted resample data into database
+[2016-10-14 21:02:54] successfully move hdf and resample files to corressponding directories
+[2016-10-14 21:02:54] successfully extracted all gzip files
+[2016-10-14 21:03:16] successfully aggregated geolocation files and it's matching data file
+[2016-10-14 21:11:21] connect to database server successfully
+[2016-10-14 21:11:24] successfully inserted information of GMTCO-VLSTO_npp_d20161014_t0524568_e0533290_b00001_c20161014063604.h5 into database
+[2016-10-14 21:11:24] successfully inserted resample data into database
+[2016-10-14 21:11:25] successfully move hdf and resample files to corressponding directories
+[2016-10-16 15:51:59] successfully extracted all gzip files
+[2016-10-16 15:52:00] successfully aggregated geolocation files and it's matching data file
+[2016-10-16 16:07:56] connect to database server successfully
+[2016-10-16 16:07:56] successfully inserted information of GAERO-VAOOO_npp_d20161016_t0625153_e0636381_b00001_c20161016074416.h5 into database
+[2016-10-16 16:07:57] successfully inserted resample data into database
+[2016-10-16 16:07:57] successfully move hdf and resample files to corressponding directories
+[2016-10-16 16:07:57] successfully extracted all gzip files
+[2016-10-16 16:08:45] successfully aggregated geolocation files and it's matching data file
+[2016-10-16 16:29:05] connect to database server successfully
+[2016-10-16 16:29:10] successfully inserted information of GMTCO-VLSTO_npp_d20161016_t0625153_e0636381_b00001_c20161016075613.h5 into database
+[2016-10-16 16:29:10] successfully inserted resample data into database
+[2016-10-16 16:29:10] successfully move hdf and resample files to corressponding directories
+[2016-10-17 15:33:50] successfully extracted all gzip files
+[2016-10-17 15:33:51] successfully aggregated geolocation files and it's matching data file
+[2016-10-17 15:49:46] connect to database server successfully
+[2016-10-17 15:49:46] successfully inserted information of GAERO-VAOOO_npp_d20161017_t0606200_e0619081_b00001_c20161017072554.h5 into database
+[2016-10-17 15:49:46] successfully inserted resample data into database
+[2016-10-17 15:49:46] successfully move hdf and resample files to corressponding directories
+[2016-10-17 15:49:46] successfully extracted all gzip files
+[2016-10-17 15:50:26] successfully aggregated geolocation files and it's matching data file
+[2016-10-17 16:10:08] connect to database server successfully
+[2016-10-17 16:10:13] successfully inserted information of GMTCO-VLSTO_npp_d20161017_t0606200_e0619081_b00001_c20161017073542.h5 into database
+[2016-10-17 16:10:13] successfully inserted resample data into database
+[2016-10-17 16:10:13] successfully move hdf and resample files to corressponding directories
+[2016-10-18 15:00:41] successfully extracted all gzip files
+[2016-10-18 15:00:42] successfully aggregated geolocation files and it's matching data file
+[2016-10-18 15:17:39] connect to database server successfully
+[2016-10-18 15:17:39] successfully inserted information of GAERO-VAOOO_npp_d20161018_t0548500_e0558474_b00001_c20161018065908.h5 into database
+[2016-10-18 15:17:39] successfully inserted resample data into database
+[2016-10-18 15:17:39] successfully move hdf and resample files to corressponding directories
+[2016-10-18 15:17:39] successfully extracted all gzip files
+[2016-10-18 15:18:19] successfully aggregated geolocation files and it's matching data file
+[2016-10-18 15:37:46] connect to database server successfully
+[2016-10-18 15:37:50] successfully inserted information of GMTCO-VLSTO_npp_d20161018_t0548500_e0558474_b00001_c20161018071021.h5 into database
+[2016-10-18 15:37:50] successfully inserted resample data into database
+[2016-10-18 15:37:50] successfully move hdf and resample files to corressponding directories
+[2016-10-19 14:23:34] successfully extracted all gzip files
+[2016-10-19 14:23:35] successfully aggregated geolocation files and it's matching data file
+[2016-10-19 14:34:58] connect to database server successfully
+[2016-10-19 14:34:58] successfully inserted information of GAERO-VAOOO_npp_d20161019_t0529545_e0538266_b00001_c20161019063027.h5 into database
+[2016-10-19 14:34:58] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2016-10-19 05:38:26'::timestamp, ''::raster...
+                                                             ^
+
+[2016-10-19 14:34:58] successfully move hdf and resample files to corressponding directories
+[2016-10-19 14:34:58] successfully extracted all gzip files
+[2016-10-19 14:35:33] successfully aggregated geolocation files and it's matching data file
+[2016-10-19 14:53:27] connect to database server successfully
+[2016-10-19 14:53:31] successfully inserted information of GMTCO-VLSTO_npp_d20161019_t0529545_e0538266_b00001_c20161019063913.h5 into database
+[2016-10-19 14:53:31] successfully inserted resample data into database
+[2016-10-19 14:53:31] successfully move hdf and resample files to corressponding directories
+[2016-10-28 15:45:49] successfully extracted all gzip files
+[2016-10-28 15:45:50] successfully aggregated geolocation files and it's matching data file
+[2016-10-28 16:02:17] connect to database server successfully
+[2016-10-28 16:02:17] successfully inserted information of GAERO-VAOOO_npp_d20161028_t0600107_e0611335_b00001_c20161028072514.h5 into database
+[2016-10-28 16:02:17] successfully inserted resample data into database
+[2016-10-28 16:02:17] successfully move hdf and resample files to corressponding directories
+[2016-10-28 16:02:17] successfully extracted all gzip files
+[2016-10-28 16:02:49] successfully aggregated geolocation files and it's matching data file
+[2016-10-28 16:22:47] connect to database server successfully
+[2016-10-28 16:22:51] successfully inserted information of GMTCO-VLSTO_npp_d20161028_t0600107_e0611335_b00001_c20161028074332.h5 into database
+[2016-10-28 16:22:51] successfully inserted resample data into database
+[2016-10-28 16:22:52] successfully move hdf and resample files to corressponding directories
+[2016-10-29 14:44:56] successfully extracted all gzip files
+[2016-10-29 14:44:57] successfully aggregated geolocation files and it's matching data file
+[2016-10-29 15:04:06] connect to database server successfully
+[2016-10-29 15:04:06] successfully inserted information of GAERO-VAOOO_npp_d20161029_t0542407_e0551128_b00001_c20161029064522.h5 into database
+[2016-10-29 15:04:07] successfully inserted resample data into database
+[2016-10-29 15:04:07] successfully move hdf and resample files to corressponding directories
+[2016-10-29 15:04:07] successfully extracted all gzip files
+[2016-10-29 15:04:30] successfully aggregated geolocation files and it's matching data file
+[2016-10-29 15:15:49] connect to database server successfully
+[2016-10-29 15:15:52] successfully inserted information of GMTCO-VLSTO_npp_d20161029_t0542407_e0551128_b00001_c20161029065745.h5 into database
+[2016-10-29 15:15:52] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2016-10-29 05:51:12'::timestamp, ''::raster...
+                                                             ^
+
+[2016-10-29 15:15:52] successfully move hdf and resample files to corressponding directories
+[2016-10-30 14:27:37] successfully extracted all gzip files
+[2016-10-30 14:27:38] successfully aggregated geolocation files and it's matching data file
+[2016-10-30 14:46:17] connect to database server successfully
+[2016-10-30 14:46:17] successfully inserted information of GAERO-VAOOO_npp_d20161030_t0523454_e0533428_b00001_c20161030062420.h5 into database
+[2016-10-30 14:46:18] successfully inserted resample data into database
+[2016-10-30 14:46:18] successfully move hdf and resample files to corressponding directories
+[2016-10-30 14:46:18] successfully extracted all gzip files
+[2016-10-30 14:46:40] successfully aggregated geolocation files and it's matching data file
+[2016-10-30 15:03:52] connect to database server successfully
+[2016-10-30 15:03:54] successfully inserted information of GMTCO-VLSTO_npp_d20161030_t0523454_e0533428_b00001_c20161030063720.h5 into database
+[2016-10-30 15:03:54] successfully inserted resample data into database
+[2016-10-30 15:03:55] successfully move hdf and resample files to corressponding directories
+[2016-11-01 15:54:26] successfully extracted all gzip files
+[2016-11-01 15:54:27] successfully aggregated geolocation files and it's matching data file
+[2016-11-01 16:10:09] connect to database server successfully
+[2016-11-01 16:10:09] successfully inserted information of GAERO-VAOOO_npp_d20161101_t0625292_e0636520_b00001_c20161101074237.h5 into database
+[2016-11-01 16:10:09] successfully inserted resample data into database
+[2016-11-01 16:10:09] successfully move hdf and resample files to corressponding directories
+[2016-11-01 16:10:09] successfully extracted all gzip files
+[2016-11-01 16:10:40] successfully aggregated geolocation files and it's matching data file
+[2016-11-01 16:30:03] connect to database server successfully
+[2016-11-01 16:30:06] successfully inserted information of GMTCO-VLSTO_npp_d20161101_t0625292_e0636520_b00001_c20161101075512.h5 into database
+[2016-11-01 16:30:06] successfully inserted resample data into database
+[2016-11-01 16:30:06] successfully move hdf and resample files to corressponding directories
+[2016-11-02 15:40:27] successfully extracted all gzip files
+[2016-11-02 15:40:28] successfully aggregated geolocation files and it's matching data file
+[2016-11-02 15:55:47] connect to database server successfully
+[2016-11-02 15:55:47] successfully inserted information of GAERO-VAOOO_npp_d20161102_t0606338_e0617566_b00001_c20161102072744.h5 into database
+[2016-11-02 15:55:47] successfully inserted resample data into database
+[2016-11-02 15:55:47] successfully move hdf and resample files to corressponding directories
+[2016-11-02 15:55:47] successfully extracted all gzip files
+[2016-11-02 15:56:18] successfully aggregated geolocation files and it's matching data file
+[2016-11-02 16:15:52] connect to database server successfully
+[2016-11-02 16:15:55] successfully inserted information of GMTCO-VLSTO_npp_d20161102_t0606338_e0617566_b00001_c20161102074058.h5 into database
+[2016-11-02 16:15:55] successfully inserted resample data into database
+[2016-11-02 16:15:55] successfully move hdf and resample files to corressponding directories
+[2016-11-03 14:54:13] successfully extracted all gzip files
+[2016-11-03 14:54:14] successfully aggregated geolocation files and it's matching data file
+[2016-11-03 15:11:28] connect to database server successfully
+[2016-11-03 15:11:29] successfully inserted information of GAERO-VAOOO_npp_d20161103_t0547385_e0557360_b00001_c20161103065238.h5 into database
+[2016-11-03 15:11:29] successfully inserted resample data into database
+[2016-11-03 15:11:29] successfully move hdf and resample files to corressponding directories
+[2016-11-03 15:11:29] successfully extracted all gzip files
+[2016-11-03 15:11:57] successfully aggregated geolocation files and it's matching data file
+[2016-11-03 15:31:13] connect to database server successfully
+[2016-11-03 15:31:15] successfully inserted information of GMTCO-VLSTO_npp_d20161103_t0547385_e0557360_b00001_c20161103070323.h5 into database
+[2016-11-03 15:31:15] successfully inserted resample data into database
+[2016-11-03 15:31:15] successfully move hdf and resample files to corressponding directories
+[2016-11-04 14:17:36] successfully extracted all gzip files
+[2016-11-04 14:17:37] successfully aggregated geolocation files and it's matching data file
+[2016-11-04 14:36:49] connect to database server successfully
+[2016-11-04 14:36:49] successfully inserted information of GAERO-VAOOO_npp_d20161104_t0530085_e0538406_b00001_c20161104061929.h5 into database
+[2016-11-04 14:36:49] successfully inserted resample data into database
+[2016-11-04 14:36:49] successfully move hdf and resample files to corressponding directories
+[2016-11-04 14:36:49] successfully extracted all gzip files
+[2016-11-04 14:37:13] successfully aggregated geolocation files and it's matching data file
+[2016-11-04 14:55:12] connect to database server successfully
+[2016-11-04 14:55:14] successfully inserted information of GMTCO-VLSTO_npp_d20161104_t0530085_e0538406_b00001_c20161104063330.h5 into database
+[2016-11-04 14:55:15] successfully inserted resample data into database
+[2016-11-04 14:55:15] successfully move hdf and resample files to corressponding directories
+[2016-11-05 16:03:03] successfully extracted all gzip files
+[2016-11-05 16:03:04] successfully aggregated geolocation files and it's matching data file
+[2016-11-05 16:21:09] connect to database server successfully
+[2016-11-05 16:21:09] successfully inserted information of GAERO-VAOOO_npp_d20161105_t0650476_e0700451_b00001_c20161105080113.h5 into database
+[2016-11-05 16:21:09] successfully inserted resample data into database
+[2016-11-05 16:21:09] successfully move hdf and resample files to corressponding directories
+[2016-11-05 16:21:09] successfully extracted all gzip files
+[2016-11-05 16:21:35] successfully aggregated geolocation files and it's matching data file
+[2016-11-05 16:41:36] connect to database server successfully
+[2016-11-05 16:41:39] successfully inserted information of GMTCO-VLSTO_npp_d20161105_t0650476_e0700451_b00001_c20161105081117.h5 into database
+[2016-11-05 16:41:40] successfully inserted resample data into database
+[2016-11-05 16:41:40] successfully move hdf and resample files to corressponding directories
+[2016-11-06 15:51:51] successfully extracted all gzip files
+[2016-11-06 15:51:52] successfully aggregated geolocation files and it's matching data file
+[2016-11-06 16:08:00] connect to database server successfully
+[2016-11-06 16:08:02] successfully inserted information of GAERO-VAOOO_npp_d20161106_t0631523_e0643151_b00001_c20161106074611.h5 into database
+[2016-11-06 16:08:03] successfully inserted resample data into database
+[2016-11-06 16:08:03] successfully move hdf and resample files to corressponding directories
+[2016-11-06 16:08:03] successfully extracted all gzip files
+[2016-11-06 16:08:33] successfully aggregated geolocation files and it's matching data file
+[2016-11-06 16:28:36] connect to database server successfully
+[2016-11-06 16:28:39] successfully inserted information of GMTCO-VLSTO_npp_d20161106_t0631523_e0643151_b00001_c20161106075739.h5 into database
+[2016-11-06 16:28:39] successfully inserted resample data into database
+[2016-11-06 16:28:40] successfully move hdf and resample files to corressponding directories
+[2017-06-22 18:56:20] successfully extracted all gzip files
+[2017-06-22 18:56:21] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 18:56:21] successfully extracted all gzip files
+[2017-06-22 18:56:21] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 18:57:07] successfully extracted all gzip files
+[2017-06-22 18:57:07] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 18:57:07] successfully extracted all gzip files
+[2017-06-22 18:57:07] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 18:59:59] successfully extracted all gzip files
+[2017-06-22 18:59:59] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 18:59:59] successfully extracted all gzip files
+[2017-06-22 18:59:59] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:12:36] successfully extracted all gzip files
+[2017-06-22 19:12:36] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:12:36] successfully extracted all gzip files
+[2017-06-22 19:12:36] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:30:20] successfully extracted all gzip files
+[2017-06-22 19:30:20] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:30:20] successfully extracted all gzip files
+[2017-06-22 19:30:20] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:31:35] successfully extracted all gzip files
+[2017-06-22 19:31:35] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:31:35] successfully extracted all gzip files
+[2017-06-22 19:31:35] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:33:43] successfully extracted all gzip files
+[2017-06-22 19:33:43] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:33:43] successfully extracted all gzip files
+[2017-06-22 19:33:43] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:36:33] successfully extracted all gzip files
+[2017-06-22 19:36:33] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:36:33] successfully extracted all gzip files
+[2017-06-22 19:36:33] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:51:30] successfully extracted all gzip files
+[2017-06-22 19:51:30] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:51:30] successfully extracted all gzip files
+[2017-06-22 19:51:30] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 19:53:19] successfully extracted all gzip files
+[2017-06-22 19:53:19] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 20:24:02] successfully extracted all gzip files
+[2017-06-22 20:24:02] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 20:28:01] connect to database server successfully
+[2017-06-22 20:28:01] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-22 20:28:01] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2017-05-28 06:35:37'::timestamp, ''::raster...
+                                                             ^
+
+[2017-06-22 20:28:02] successfully move hdf and resample files to corressponding directories
+[2017-06-22 20:28:02] successfully extracted all gzip files
+[2017-06-22 20:28:03] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 20:50:39] connect to database server successfully
+[2017-06-22 20:50:40] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-22 20:50:40] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2017-05-28 06:35:37'::timestamp, ''::raster...
+                                                             ^
+
+[2017-06-22 20:50:40] successfully move hdf and resample files to corressponding directories
+[2017-06-22 21:55:24] successfully extracted all gzip files
+[2017-06-22 21:55:24] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 21:58:58] connect to database server successfully
+[2017-06-22 21:58:58] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-22 21:58:58] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2017-05-28 06:35:37'::timestamp, ''::raster...
+                                                             ^
+
+[2017-06-22 21:58:58] successfully move hdf and resample files to corressponding directories
+[2017-06-22 21:58:58] successfully extracted all gzip files
+[2017-06-22 21:59:00] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 22:03:21] connect to database server successfully
+[2017-06-22 22:03:22] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-22 22:03:22] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2017-05-28 06:35:37'::timestamp, ''::raster...
+                                                             ^
+
+[2017-06-22 22:03:22] successfully move hdf and resample files to corressponding directories
+[2017-06-22 22:03:25] successfully extracted all gzip files
+[2017-06-22 22:03:25] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 22:06:56] connect to database server successfully
+[2017-06-22 22:06:56] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-22 22:06:56] successfully inserted resample data into database
+[2017-06-22 22:06:56] successfully move hdf and resample files to corressponding directories
+[2017-06-22 22:06:56] successfully extracted all gzip files
+[2017-06-22 22:07:02] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 22:30:18] connect to database server successfully
+[2017-06-22 22:30:19] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-22 22:30:19] successfully inserted resample data into database
+[2017-06-22 22:30:19] successfully move hdf and resample files to corressponding directories
+[2017-06-22 23:32:31] successfully extracted all gzip files
+[2017-06-22 23:32:31] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 23:36:05] connect to database server successfully
+[2017-06-22 23:36:05] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-22 23:36:05] successfully inserted resample data into database
+[2017-06-22 23:36:05] successfully move hdf and resample files to corressponding directories
+[2017-06-22 23:36:05] successfully extracted all gzip files
+[2017-06-22 23:36:08] successfully aggregated geolocation files and it's matching data file
+[2017-06-22 23:59:08] connect to database server successfully
+[2017-06-22 23:59:09] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-22 23:59:09] successfully inserted resample data into database
+[2017-06-22 23:59:09] successfully move hdf and resample files to corressponding directories
+[2017-06-23 00:18:08] successfully extracted all gzip files
+[2017-06-23 00:18:08] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 00:21:38] connect to database server successfully
+[2017-06-23 00:21:38] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 00:21:39] successfully inserted resample data into database
+[2017-06-23 00:21:39] successfully move hdf and resample files to corressponding directories
+[2017-06-23 00:21:39] successfully extracted all gzip files
+[2017-06-23 00:21:41] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 00:44:30] connect to database server successfully
+[2017-06-23 00:44:32] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 00:44:32] successfully inserted resample data into database
+[2017-06-23 00:44:32] successfully move hdf and resample files to corressponding directories
+[2017-06-23 09:10:10] successfully extracted all gzip files
+[2017-06-23 09:10:11] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 09:13:50] connect to database server successfully
+[2017-06-23 09:13:51] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 09:13:51] successfully inserted resample data into database
+[2017-06-23 09:13:51] successfully move hdf and resample files to corressponding directories
+[2017-06-23 09:13:51] successfully extracted all gzip files
+[2017-06-23 09:13:54] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 09:36:42] connect to database server successfully
+[2017-06-23 09:36:43] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 09:36:44] successfully inserted resample data into database
+[2017-06-23 09:36:44] successfully move hdf and resample files to corressponding directories
+[2017-06-23 09:44:21] successfully extracted all gzip files
+[2017-06-23 09:44:21] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 09:47:57] connect to database server successfully
+[2017-06-23 09:47:57] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 09:47:57] successfully inserted resample data into database
+[2017-06-23 09:47:57] successfully move hdf and resample files to corressponding directories
+[2017-06-23 09:47:57] successfully extracted all gzip files
+[2017-06-23 09:48:00] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 10:10:50] connect to database server successfully
+[2017-06-23 10:10:51] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 10:10:51] successfully inserted resample data into database
+[2017-06-23 10:10:51] successfully move hdf and resample files to corressponding directories
+[2017-06-23 14:39:49] successfully extracted all gzip files
+[2017-06-23 14:39:50] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 14:44:38] connect to database server successfully
+[2017-06-23 14:44:38] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 14:44:38] successfully inserted resample data into database
+[2017-06-23 14:44:39] successfully move hdf and resample files to corressponding directories
+[2017-06-23 14:44:39] successfully extracted all gzip files
+[2017-06-23 14:44:53] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 15:08:51] connect to database server successfully
+[2017-06-23 15:08:52] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 15:08:53] successfully inserted resample data into database
+[2017-06-23 15:08:53] successfully move hdf and resample files to corressponding directories
+[2017-06-23 15:49:42] successfully extracted all gzip files
+[2017-06-23 15:49:42] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 15:53:30] connect to database server successfully
+[2017-06-23 15:53:30] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 15:53:30] successfully inserted resample data into database
+[2017-06-23 15:53:30] successfully move hdf and resample files to corressponding directories
+[2017-06-23 15:53:30] successfully extracted all gzip files
+[2017-06-23 15:53:42] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 16:16:35] connect to database server successfully
+[2017-06-23 16:16:36] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 16:16:36] successfully inserted resample data into database
+[2017-06-23 16:16:36] successfully move hdf and resample files to corressponding directories
+[2017-06-23 20:03:48] successfully extracted all gzip files
+[2017-06-23 20:03:48] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 20:07:19] connect to database server successfully
+[2017-06-23 20:07:19] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 20:07:19] successfully inserted resample data into database
+[2017-06-23 20:07:19] successfully move hdf and resample files to corressponding directories
+[2017-06-23 20:07:19] successfully extracted all gzip files
+[2017-06-23 20:07:21] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 20:32:19] connect to database server successfully
+[2017-06-23 20:32:20] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 20:32:20] successfully inserted resample data into database
+[2017-06-23 20:32:20] successfully move hdf and resample files to corressponding directories
+[2017-06-23 21:41:50] successfully extracted all gzip files
+[2017-06-23 21:41:50] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 21:45:30] connect to database server successfully
+[2017-06-23 21:45:30] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 21:45:31] successfully inserted resample data into database
+[2017-06-23 21:45:31] successfully move hdf and resample files to corressponding directories
+[2017-06-23 21:45:31] successfully extracted all gzip files
+[2017-06-23 21:45:33] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 22:09:00] connect to database server successfully
+[2017-06-23 22:09:01] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 22:09:01] successfully inserted resample data into database
+[2017-06-23 22:09:01] successfully move hdf and resample files to corressponding directories
+[2017-06-23 22:53:00] successfully extracted all gzip files
+[2017-06-23 22:53:00] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 22:56:59] connect to database server successfully
+[2017-06-23 22:56:59] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 22:56:59] successfully inserted resample data into database
+[2017-06-23 22:56:59] successfully move hdf and resample files to corressponding directories
+[2017-06-23 22:56:59] successfully extracted all gzip files
+[2017-06-23 22:57:03] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 23:20:27] connect to database server successfully
+[2017-06-23 23:20:29] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-23 23:20:29] successfully inserted resample data into database
+[2017-06-23 23:20:29] successfully move hdf and resample files to corressponding directories
+[2017-06-23 23:52:53] successfully extracted all gzip files
+[2017-06-23 23:52:53] successfully aggregated geolocation files and it's matching data file
+[2017-06-23 23:56:37] connect to database server successfully
+[2017-06-23 23:56:37] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-23 23:56:37] successfully inserted resample data into database
+[2017-06-23 23:56:37] successfully move hdf and resample files to corressponding directories
+[2017-06-23 23:56:37] successfully extracted all gzip files
+[2017-06-23 23:56:39] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 00:19:21] connect to database server successfully
+[2017-06-24 00:19:22] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-24 00:19:22] successfully inserted resample data into database
+[2017-06-24 00:19:22] successfully move hdf and resample files to corressponding directories
+[2017-06-24 01:08:40] successfully extracted all gzip files
+[2017-06-24 01:08:40] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 01:12:08] connect to database server successfully
+[2017-06-24 01:12:09] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-24 01:12:09] successfully inserted resample data into database
+[2017-06-24 01:12:09] successfully move hdf and resample files to corressponding directories
+[2017-06-24 01:12:09] successfully extracted all gzip files
+[2017-06-24 01:12:11] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 01:35:02] connect to database server successfully
+[2017-06-24 01:35:03] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-24 01:35:03] successfully inserted resample data into database
+[2017-06-24 01:35:04] successfully move hdf and resample files to corressponding directories
+[2017-06-24 22:10:09] successfully extracted all gzip files
+[2017-06-24 22:10:09] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 22:13:47] connect to database server successfully
+[2017-06-24 22:13:47] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-24 22:13:47] successfully inserted resample data into database
+[2017-06-24 22:13:47] successfully move hdf and resample files to corressponding directories
+[2017-06-24 22:13:47] successfully extracted all gzip files
+[2017-06-24 22:13:50] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 22:37:03] connect to database server successfully
+[2017-06-24 22:37:03] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-24 22:37:04] successfully inserted resample data into database
+[2017-06-24 22:37:04] successfully move hdf and resample files to corressponding directories
+[2017-06-24 23:22:47] successfully extracted all gzip files
+[2017-06-24 23:22:47] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 23:26:16] connect to database server successfully
+[2017-06-24 23:26:16] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-24 23:26:16] successfully inserted resample data into database
+[2017-06-24 23:26:16] successfully move hdf and resample files to corressponding directories
+[2017-06-24 23:26:16] successfully extracted all gzip files
+[2017-06-24 23:26:19] successfully aggregated geolocation files and it's matching data file
+[2017-06-24 23:48:50] connect to database server successfully
+[2017-06-24 23:48:52] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-24 23:48:52] successfully inserted resample data into database
+[2017-06-24 23:48:52] successfully move hdf and resample files to corressponding directories
+[2017-06-25 00:46:28] successfully extracted all gzip files
+[2017-06-25 00:46:28] successfully aggregated geolocation files and it's matching data file
+[2017-06-25 00:49:58] connect to database server successfully
+[2017-06-25 00:49:58] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-25 00:49:58] successfully inserted resample data into database
+[2017-06-25 00:49:58] successfully move hdf and resample files to corressponding directories
+[2017-06-25 00:49:58] successfully extracted all gzip files
+[2017-06-25 00:50:01] successfully aggregated geolocation files and it's matching data file
+[2017-06-25 01:12:29] connect to database server successfully
+[2017-06-25 01:12:30] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-25 01:12:30] successfully inserted resample data into database
+[2017-06-25 01:12:30] successfully move hdf and resample files to corressponding directories
+[2017-06-27 18:05:17] successfully extracted all gzip files
+[2017-06-27 18:05:17] successfully aggregated geolocation files and it's matching data file
+[2017-06-27 18:08:52] connect to database server successfully
+[2017-06-27 18:08:53] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-27 18:08:53] successfully inserted resample data into database
+[2017-06-27 18:08:53] successfully move hdf and resample files to corressponding directories
+[2017-06-27 18:08:53] successfully extracted all gzip files
+[2017-06-27 18:09:01] successfully aggregated geolocation files and it's matching data file
+[2017-06-27 18:31:59] connect to database server successfully
+[2017-06-27 18:32:00] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-27 18:32:00] successfully inserted resample data into database
+[2017-06-27 18:32:00] successfully move hdf and resample files to corressponding directories
+[2017-06-27 19:25:13] successfully extracted all gzip files
+[2017-06-27 19:25:13] successfully aggregated geolocation files and it's matching data file
+[2017-06-27 19:29:01] connect to database server successfully
+[2017-06-27 19:29:01] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-06-27 19:29:01] successfully inserted resample data into database
+[2017-06-27 19:29:01] successfully move hdf and resample files to corressponding directories
+[2017-06-27 19:29:01] successfully extracted all gzip files
+[2017-06-27 19:29:14] successfully aggregated geolocation files and it's matching data file
+[2017-06-27 19:51:47] connect to database server successfully
+[2017-06-27 19:51:48] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-06-27 19:51:48] successfully inserted resample data into database
+[2017-06-27 19:51:48] successfully move hdf and resample files to corressponding directories
+[2017-06-30 19:54:35] successfully extracted all gzip files
+[2017-06-30 19:54:35] successfully aggregated geolocation files and it's matching data file
+[2017-06-30 19:58:07] connect to database server successfully
+[2017-06-30 19:58:07] successfully inserted information of GAERO-VAOOO_npp_d20170630_t0605471_e0617098_b00001_c20170630185218.h5 into database
+[2017-06-30 19:58:07] successfully inserted resample data into database
+[2017-06-30 19:58:07] successfully move hdf and resample files to corressponding directories
+[2017-06-30 19:58:07] successfully extracted all gzip files
+[2017-06-30 19:58:10] successfully aggregated geolocation files and it's matching data file
+[2017-06-30 20:21:04] connect to database server successfully
+[2017-06-30 20:21:05] successfully inserted information of GMTCO-VLSTO_npp_d20170630_t0605471_e0617098_b00001_c20170630190939.h5 into database
+[2017-06-30 20:21:05] successfully inserted resample data into database
+[2017-06-30 20:21:05] successfully move hdf and resample files to corressponding directories
+[2017-07-17 09:47:36] successfully extracted all gzip files
+[2017-07-17 09:47:36] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 09:51:08] connect to database server successfully
+[2017-07-17 09:51:08] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 09:51:08] successfully inserted resample data into database
+[2017-07-17 09:51:08] successfully move hdf and resample files to corressponding directories
+[2017-07-17 09:51:08] successfully extracted all gzip files
+[2017-07-17 09:51:08] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 10:02:11] successfully extracted all gzip files
+[2017-07-17 10:02:11] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 10:05:43] connect to database server successfully
+[2017-07-17 10:05:43] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 10:05:43] successfully inserted resample data into database
+[2017-07-17 10:05:43] successfully move hdf and resample files to corressponding directories
+[2017-07-17 10:05:43] successfully extracted all gzip files
+[2017-07-17 10:05:43] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 10:26:03] successfully extracted all gzip files
+[2017-07-17 10:26:03] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 10:29:41] connect to database server successfully
+[2017-07-17 10:29:41] successfully inserted information of GAERO-VAOOO_npp_d20170524_t0558561_e0611442_b00001_c20170524072458.h5 into database
+[2017-07-17 10:29:41] successfully inserted resample data into database
+[2017-07-17 10:29:41] successfully move hdf and resample files to corressponding directories
+[2017-07-17 10:29:41] successfully extracted all gzip files
+[2017-07-17 10:29:41] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:18:46] successfully extracted all gzip files
+[2017-07-17 13:18:46] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:23:03] connect to database server successfully
+[2017-07-17 13:23:03] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 13:23:03] successfully inserted resample data into database
+[2017-07-17 13:23:03] successfully move hdf and resample files to corressponding directories
+[2017-07-17 13:23:03] successfully extracted all gzip files
+[2017-07-17 13:23:03] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:39:21] successfully extracted all gzip files
+[2017-07-17 13:39:21] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:43:39] connect to database server successfully
+[2017-07-17 13:43:39] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 13:43:39] successfully inserted resample data into database
+[2017-07-17 13:43:39] successfully move hdf and resample files to corressponding directories
+[2017-07-17 13:43:39] successfully extracted all gzip files
+[2017-07-17 13:43:39] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:49:48] successfully extracted all gzip files
+[2017-07-17 13:49:49] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:49:49] successfully extracted all gzip files
+[2017-07-17 13:49:58] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:51:42] successfully extracted all gzip files
+[2017-07-17 13:51:42] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:55:16] connect to database server successfully
+[2017-07-17 13:55:16] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 13:55:16] successfully inserted resample data into database
+[2017-07-17 13:55:16] successfully move hdf and resample files to corressponding directories
+[2017-07-17 13:55:16] successfully extracted all gzip files
+[2017-07-17 13:55:18] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 13:56:40] successfully extracted all gzip files
+[2017-07-17 13:56:40] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:00:22] connect to database server successfully
+[2017-07-17 14:00:22] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 14:00:22] successfully inserted resample data into database
+[2017-07-17 14:00:22] successfully move hdf and resample files to corressponding directories
+[2017-07-17 14:00:22] successfully extracted all gzip files
+[2017-07-17 14:00:22] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:05:09] successfully extracted all gzip files
+[2017-07-17 14:05:09] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:08:53] connect to database server successfully
+[2017-07-17 14:08:53] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 14:08:53] successfully inserted resample data into database
+[2017-07-17 14:08:53] successfully move hdf and resample files to corressponding directories
+[2017-07-17 14:08:53] successfully extracted all gzip files
+[2017-07-17 14:08:53] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:24:14] successfully extracted all gzip files
+[2017-07-17 14:24:14] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:24:14] successfully extracted all gzip files
+[2017-07-17 14:24:19] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:26:12] successfully extracted all gzip files
+[2017-07-17 14:26:12] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:30:06] connect to database server successfully
+[2017-07-17 14:30:07] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 14:30:07] successfully inserted resample data into database
+[2017-07-17 14:30:07] successfully move hdf and resample files to corressponding directories
+[2017-07-17 14:30:07] successfully extracted all gzip files
+[2017-07-17 14:30:07] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 14:58:55] successfully extracted all gzip files
+[2017-07-17 14:58:55] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 15:02:42] connect to database server successfully
+[2017-07-17 15:02:43] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 15:02:43] successfully inserted resample data into database
+[2017-07-17 15:02:43] successfully move hdf and resample files to corressponding directories
+[2017-07-17 15:02:43] successfully extracted all gzip files
+[2017-07-17 15:02:46] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 15:25:21] connect to database server successfully
+[2017-07-17 15:25:22] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-07-17 15:25:22] successfully inserted resample data into database
+[2017-07-17 15:25:22] successfully move hdf and resample files to corressponding directories
+[2017-07-17 15:42:26] successfully extracted all gzip files
+[2017-07-17 15:42:26] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 15:45:56] connect to database server successfully
+[2017-07-17 15:45:56] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-17 15:45:56] successfully inserted resample data into database
+[2017-07-17 15:45:56] successfully move hdf and resample files to corressponding directories
+[2017-07-17 15:45:56] successfully extracted all gzip files
+[2017-07-17 15:45:59] successfully aggregated geolocation files and it's matching data file
+[2017-07-17 16:08:50] connect to database server successfully
+[2017-07-17 16:08:51] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-07-17 16:08:51] successfully inserted resample data into database
+[2017-07-17 16:08:51] successfully move hdf and resample files to corressponding directories
+[2017-07-19 21:56:27] successfully extracted all gzip files
+[2017-07-19 21:56:27] successfully aggregated geolocation files and it's matching data file
+[2017-07-19 21:59:59] connect to database server successfully
+[2017-07-19 21:59:59] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-19 21:59:59] successfully inserted resample data into database
+[2017-07-19 21:59:59] successfully move hdf and resample files to corressponding directories
+[2017-07-19 21:59:59] successfully extracted all gzip files
+[2017-07-19 22:00:01] successfully aggregated geolocation files and it's matching data file
+[2017-07-19 23:11:19] successfully extracted all gzip files
+[2017-07-19 23:11:19] successfully aggregated geolocation files and it's matching data file
+[2017-07-19 23:14:49] connect to database server successfully
+[2017-07-19 23:14:49] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-19 23:14:50] successfully inserted resample data into database
+[2017-07-19 23:14:50] successfully move hdf and resample files to corressponding directories
+[2017-07-19 23:14:50] successfully extracted all gzip files
+[2017-07-19 23:14:56] successfully aggregated geolocation files and it's matching data file
+[2017-07-19 23:19:59] connect to database server successfully
+[2017-07-19 23:20:00] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-07-19 23:20:00] successfully inserted resample data into database
+[2017-07-19 23:20:01] successfully move hdf and resample files to corressponding directories
+[2017-07-19 23:58:28] successfully extracted all gzip files
+[2017-07-19 23:58:28] successfully aggregated geolocation files and it's matching data file
+[2017-07-20 00:02:18] connect to database server successfully
+[2017-07-20 00:02:19] successfully inserted information of GAERO-VAOOO_npp_d20170528_t0624145_e0635373_b00001_c20170528074532.h5 into database
+[2017-07-20 00:02:19] successfully inserted resample data into database
+[2017-07-20 00:02:19] successfully move hdf and resample files to corressponding directories
+[2017-07-20 00:02:19] successfully extracted all gzip files
+[2017-07-20 00:02:22] successfully aggregated geolocation files and it's matching data file
+[2017-07-20 00:25:09] connect to database server successfully
+[2017-07-20 00:25:10] successfully inserted information of GMTCO-VLSTO_npp_d20170528_t0624145_e0635373_b00001_c20170528075618.h5 into database
+[2017-07-20 00:25:10] successfully inserted resample data into database
+[2017-07-20 00:25:11] successfully move hdf and resample files to corressponding directories
+[2018-01-31 19:02:10] successfully extracted all gzip files
+[2018-01-31 19:02:11] successfully aggregated geolocation files and it's matching data file
+[2018-01-31 19:06:30] connect to database server successfully
+[2018-01-31 19:06:31] successfully inserted information of GAERO-VAOOO_npp_d20180125_t0547024_e0556598_b00001_c20180125064337.h5 into database
+[2018-01-31 19:06:31] successfully inserted resample data into database
+[2018-01-31 19:06:31] successfully move hdf and resample files to corressponding directories
+[2018-01-31 19:10:34] connect to database server successfully
+[2018-01-31 19:10:34] successfully inserted information of GAERO-VAOOO_npp_d20171227_t0632136_e0642111_b00001_c20171227073222.h5 into database
+[2018-01-31 19:10:34] successfully inserted resample data into database
+[2018-01-31 19:10:34] successfully move hdf and resample files to corressponding directories
+[2018-01-31 23:26:46] successfully extracted all gzip files
+[2018-01-31 23:26:46] successfully aggregated geolocation files and it's matching data file
+[2018-01-31 23:31:18] connect to database server successfully
+[2018-01-31 23:31:18] successfully inserted information of GAERO-VAOOO_npp_d20180125_t0547024_e0556598_b00001_c20180125064337.h5 into database
+[2018-01-31 23:31:18] successfully inserted resample data into database
+[2018-01-31 23:31:18] successfully move hdf and resample files to corressponding directories
+[2018-01-31 23:35:35] connect to database server successfully
+[2018-01-31 23:35:35] successfully inserted information of GAERO-VAOOO_npp_d20171227_t0632136_e0642111_b00001_c20171227073222.h5 into database
+[2018-01-31 23:35:36] successfully inserted resample data into database
+[2018-01-31 23:35:36] successfully move hdf and resample files to corressponding directories
+[2018-01-31 23:35:36] successfully extracted all gzip files
+[2018-01-31 23:35:57] successfully aggregated geolocation files and it's matching data file
+[2018-01-31 23:35:58] connect to database server successfully
+[2018-01-31 23:35:59] successfully inserted information of GMTCO-VLSTO_npp_d20180125_t0547024_e0556598_b00001_c20180125065321.h5 into database
+[2018-01-31 23:35:59] unable to insert resample data into database: ERROR:  invalid input syntax for type timestamp: "-- ::"
+LINE 1: ... VALUES ('', 'apom/res/SatResampVIIRSTemp///', 2, '-- ::'::t...
+                                                             ^
+
+[2018-01-31 23:35:59] successfully move hdf and resample files to corressponding directories
+[2018-01-31 23:54:40] connect to database server successfully
+[2018-01-31 23:54:41] successfully inserted information of GMTCO-VLSTO_npp_d20171227_t0632136_e0642111_b00001_c20171227074729.h5 into database
+[2018-01-31 23:54:41] unable to insert resample data into database: ERROR:  rt_raster_from_wkb: wkb size (0)  < min size (61)
+LINE 1: ..._resample/', 2, '2017-12-27 06:42:11'::timestamp, ''::raster...
+                                                             ^
+
